@@ -5,9 +5,27 @@
     </head>
     <body>
         <!-- Your HTML code goes here! -->
+        <!-- You chose to {{opperator}} {{num1}} and {{num2}}, the result is: RESULT HERE -->
+        <!-- {int(num1) + int(num2)} -->
 
+        {% if opperator == 'add' %}
+            <p>You chose to {{opperator}} {{num1}} and {{num2}}, the result is: {{ num1|int + num2|int }}</p>
+        {% elif opperator == 'subtract' %}
+            <p>You chose to {{opperator}} {{num1}} and {{num2}}, the result is: {{ num1|int - num2|int }}</p>
+        {% elif opperator == 'multiply' %}
+            <p>You chose to {{opperator}} {{num1}} and {{num2}}, the result is: {{ num1|int * num2|int }}</p>
+        {% else %}
+            <p>You chose to {{opperator}} {{num1}} and {{num2}}, the result is: {{ num1|int / num2|int }}</p>
+        {% endif %}
 
-
+   <!-- # if opperator == 'add':
+        #     return f"You chose to {opperator} {num1} and {num2}, the result is: {int(num1) + int(num2)}" 
+        # elif opperator == 'subtract': 
+        #     return f"You chose to {opperator} {num1} and {num2}, the result is: {int(num1) - int(num2)}"
+        # elif opperator == 'multiply':
+        #     return f"You chose to {opperator} {num1} and {num2}, the result is: {int(num1) * int(num2)}"
+        # else: 
+        #     return f"You chose to {opperator} {num1} and {num2}, the result is: {int(num1) / int(num2)}" -->
 
 
         
