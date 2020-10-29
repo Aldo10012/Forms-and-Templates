@@ -20,23 +20,19 @@ def homepage():
 @app.route('/froyo')
 def choose_froyo():
     """Shows a form to collect the user's Fro-Yo order."""
-    return """
-    <form action="/froyo_results" method="Get">
-        What is your favorite Fro-Yo flavor? <br/>
-        <input type="text" name="flavor"><br/>
+    return render_template('froyo_form.html')
 
-        Whar toppings would you like? <br/>
-        <input type='text' name="toppings"> <br/>
-        
-        <input type="submit" value="Submit!">
-    </form>
-    """
 
 @app.route('/froyo_results')
 def show_froyo_results():
-    users_froyo_flavor = request.args.get('flavor')
-    users_froyo_toppings = request.args.get('toppings')
-    return f'You ordered {users_froyo_flavor} flavored Fro-Yo with {users_froyo_toppings} toppings'
+    context = {
+        "users_froyo_flavor": request.args.get('flavor'),
+        "users_froyo_toppings": request.args.get('toppings')
+    }
+    return render_template("froyo_results.html", **context)
+    # users_froyo_flavor = request.args.get('flavor')
+    # users_froyo_toppings = request.args.get('toppings')
+    # return f'You ordered {users_froyo_flavor} flavored Fro-Yo with {users_froyo_toppings} toppings'
 
 
 
