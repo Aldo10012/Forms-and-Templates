@@ -6,6 +6,7 @@ app = Flask(__name__)
 def sort_letters(message):
     """A helper method to sort the characters of a string in alphabetical order
     and return the new string."""
+    print(message)
     return ''.join(sorted(list(message)))
 
 # Create Home Page
@@ -81,8 +82,8 @@ def secret_message():
 @app.route('/message_results', methods=['POST'])
 def message_results():
     """Shows the user their message, with the letters in sorted order."""
-    users_secret_message = request.args.get('message')
-    return users_secret_message.sort_letters()
+    users_secret_message = request.form.get('message')
+    return sort_letters(users_secret_message)
 
 
 
@@ -158,11 +159,21 @@ def compliments():
 @app.route('/compliments_results')
 def compliments_results():
     """Show the user some compliments."""
+    num_of_compliments = int(request.args.get('num_compliments'))
+    empty_list = []
+    for index in range(num_of_compliments):
+        empty_list.append(random.choice(list_of_compliments))
+
     context = {
         # TODO: Enter your context variables here.
+        'user_name' : request.args.get('users_name'),
+        'want_compliment' : request.args.get('wants_compliments'),
+        'num_of_compliments' : num_of_compliments
     }
 
-    return render_template('compliments_results.html', **context)
+
+
+    return render_template('compliments_results.html', **context, list_of_compliments=empty_list)
 
 
 if __name__ == '__main__':

@@ -8,6 +8,21 @@
 
         
 
+        <p>Hello {{user_name}}</p>
+
+        {% if want_compliment == 'yes' %}
+            <p>As requested, here are {{num_of_compliments}} compliments!</p> <br>
+
+            {% for compliment in list_of_compliments  %}
+                <li>{{compliment}} </li>
+            {% endfor %}
+
+            
+        {% else %}
+            If the second statement is true, this HTML will be displayed!
+        {% endif %}
+        
+        
         
         
     </body>
